@@ -1,0 +1,29 @@
+//DESIGN CODE
+module demux1to8(
+    input y,s0,s1,s2,
+    output a,b,c,d,e,f,g,h
+    );
+demux1to2 d1(.y(y),.s(s0),.a(w1),.b(w2));
+demux1to4 d2(.y(w1),.s0(s1),.s1(s2),.a(a),.b(b),.c(c),.d(d));
+demux1to4 d3(.y(w2),.s0(s1),.s1(s2),.a(e),.b(f),.c(g),.d(h));
+endmodule
+
+
+//TEST BENCH
+module demux1to8_tb;
+reg y;
+reg s0,s1,s2;
+wire a,b,c,d,e,f,g,h;
+demux1to8 uut(.y(y),.s0(s0),.s1(s1),.s2(s2),.a(a),.b(b),.c(c),.d(d),.e(e),.f(f),.g(g),.h(h));
+initial begin
+y=0;s0=0;s1=0;s2=0;#100;
+y=1;s0=0;s1=0;s2=0;#100;
+y=1;s0=0;s1=0;s2=1;#100;
+y=1;s0=0;s1=1;s2=0;#100;
+y=1;s0=0;s1=1;s2=1;#100;
+y=1;s0=1;s1=0;s2=0;#100;
+y=1;s0=1;s1=0;s2=1;#100;
+y=1;s0=1;s1=1;s2=0;#100;
+y=1;s0=1;s1=1;s2=1;#100;
+end
+endmodule

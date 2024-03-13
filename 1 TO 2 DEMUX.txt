@@ -1,0 +1,24 @@
+//DESIGN CODE
+module demux1to2(
+    input y,s,
+    output a,b
+    );
+and(a,y,!s);
+and(b,y,s);
+endmodule
+
+
+//TEST BENCH
+module demux1to2_tb;
+reg y;
+reg s;
+wire a;
+wire b;
+demux1to2 uut(.y(y),.s(s),.a(a),.b(b));
+initial begin
+ y=0;s=0;#100;
+ y=0;s=1;#100;
+ y=1;s=0;#100;
+ y=1;s=1;#100;
+end
+endmodule
